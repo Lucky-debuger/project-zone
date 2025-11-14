@@ -12,12 +12,24 @@ public class PlayerAimWeapon : MonoBehaviour
 
     private void Update()
     {
-        // Vector2 mousePosition = Mouse.current.position.ReadValue();
-        // Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        // worldPosition.z = 0;
-        // Debug.Log($"Screen: {mousePosition} World: {worldPosition}");
-
-        Vector3 Mouse.current.position.ReadValue();
+        HandleAiming();
+        // HandleShooting();
     }
+
+    private void HandleAiming()
+    {
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 aimDirection = (worldPosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg; // transform.LookAt(aimDirection);
+        aimTransform.eulerAngles = new Vector3(0, 0, angle);
+    }
+    // private void HandleShooting()
+    // {
+    //     if (Input.GetMouseButtonDown(0))
+    //     {
+    //         Debug.Log("Bang!");
+    //     }
+    // }
 
 }
