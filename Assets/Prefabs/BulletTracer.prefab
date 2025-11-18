@@ -85,13 +85,31 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0.0042648315
-        value: 0.08247757
+        value: 0.22681046
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.13219617
+        value: 0.17525774
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.8784648
+        value: 0.16494845
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -144,4 +162,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e56ed5c3fe66d4d8f3fac559ed6c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 4412766428891346662}
