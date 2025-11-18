@@ -1,10 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class BulletTracer : MonoBehaviour
 {
-    // [SerializeField] private LineRenderer lineRenderer;
     private LineRenderer lineRenderer;
     private Vector3 startPosition;
     private Vector3 endPosition;
@@ -14,7 +12,7 @@ public class BulletTracer : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    public void CreateWeaponTracer(Vector3 fromPosition, Vector3 targetPosition)
+    public void CreateBulletTracer(Vector3 fromPosition, Vector3 targetPosition)
     {
         startPosition = fromPosition;
         endPosition = targetPosition;

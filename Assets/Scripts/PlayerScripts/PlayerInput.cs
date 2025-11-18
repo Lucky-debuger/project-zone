@@ -5,15 +5,14 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     public static event Action<Vector2> OnMouseMoved;
-    public static event Action<Vector2> OnFirePerformed;
+    public static event Action<Vector2> OnClickPerformed;
 
     private InputActions inputActions;
 
     void Awake()
     {
         inputActions = new InputActions();
-        // inputActions.Player.Click.performed += ctx => OnClick();
-        inputActions.Player.Click.performed += ctx => OnFirePerformed?.Invoke(Mouse.current.position.ReadValue());
+        inputActions.Player.Click.performed += ctx => OnClickPerformed?.Invoke(Mouse.current.position.ReadValue());
     }
 
     void Update()
@@ -27,11 +26,6 @@ public class PlayerInput : MonoBehaviour
         OnMouseMoved?.Invoke(mousePos);
     }
 
-
-    // private void OnClick()
-    // {
-    //     Debug.Log("Left mouse button clicked!");
-    // }
 
     private void OnEnable() => inputActions.Enable();
     private void OnDisable() => inputActions.Disable();

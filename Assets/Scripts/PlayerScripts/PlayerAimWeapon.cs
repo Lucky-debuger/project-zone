@@ -1,22 +1,21 @@
+using System;
 using UnityEngine;
 
 
 public class PlayerAimWeapon : MonoBehaviour
 {
-    [SerializeField] BulletTracer bulletTracer;
-    [SerializeField] Animator animator;
-    private Transform aimLocalScale;
+    [SerializeField] private Gun currentWeapon;
     private Transform aimTransform;
     private Transform firePos;
   
-
     private void Awake()
     {
         aimTransform = transform.Find("Aim");
         firePos = transform.Find("Aim/Pistol/FirePos");
+        // currentWeapon = GetComponentInChildren<IWeapon>(); // Компонент?
 
         PlayerInput.OnMouseMoved += HandleAiming;
-        PlayerInput.OnFirePerformed += HandleShooting;
+        PlayerInput.OnClickPerformed += HandleShooting;
     }
 
     private void HandleAiming(Vector2 mousePosition)
@@ -43,9 +42,12 @@ public class PlayerAimWeapon : MonoBehaviour
     {
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mouseClickPosition);
         worldPosition.z = 0;
-        animator.Play("FireAnimation", 0, 0f); // Можно вынести в отделный класс и использовать Observer
-        BulletTracer tracer = Instantiate(bulletTracer); // Можно вынести в отделный класс и использовать Observer
-        tracer.CreateWeaponTracer(firePos.position, worldPosition);
-        // Debug.DrawLine(firePos.transform.position, worldPosition, Color.white, .5f);
+
+        currentWeapon?.Fire(firePos.position, worldPosition);
+        // animator.Play("FireAnimation", 0, 0f); // Можно вынести в отделный класс и использовать
+        // BulletTracer tracer = Instantiate(bulletTracer); // Можно вынести в отделный класс и использовать
+        // tracer.CreateBulletTracer(firePos.position, worldPosition);
+        // OnShootPerformed?.Invoke(firePos.position, worldPosition);
+        // // Debug.DrawLine(firePos.transform.position, worldPosition, Color.white, .5f);
     }
 }
