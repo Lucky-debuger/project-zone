@@ -14,7 +14,6 @@ public class BulletTracer : MonoBehaviour
 
     public void CreateBulletTracer(Vector3 fromPosition, Vector3 targetPosition)
     {
-        Debug.Log($"BulletTracer position: {fromPosition}, {targetPosition}");
         startPosition = fromPosition;
         endPosition = targetPosition;
 

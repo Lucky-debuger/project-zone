@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         if (isJoystick)
         {
             var movementDirection = new Vector2(joystick.Direction.x, joystick.Direction.y);
-            // ✅ Оптимизация: избегаем создания новых Vector2 каждый кадр
+            
             newVelocity.x = movementDirection.x * movementSpeed;
             newVelocity.y = movementDirection.y * movementSpeed;
             _rigidbody.velocity = newVelocity;

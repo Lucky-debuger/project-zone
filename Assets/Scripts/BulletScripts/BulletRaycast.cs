@@ -14,7 +14,6 @@ public class BulletRaycast : MonoBehaviour
         float distance = Vector2.Distance(startPosition, endPosition);
         RaycastHit2D raycastHit2D = Physics2D.Raycast(startPosition, direction, distance);
         Debug.DrawRay(startPosition, direction * distance, Color.red, 0.3f);
-        Debug.Log($"Raycasthit2d: {startPosition}, {endPosition};");
 
         if (raycastHit2D.collider != null)
         {

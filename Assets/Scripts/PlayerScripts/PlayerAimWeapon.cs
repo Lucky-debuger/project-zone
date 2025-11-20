@@ -7,7 +7,7 @@ public class PlayerAimWeapon : MonoBehaviour
     [SerializeField] private Gun currentWeapon;
     private Transform aimTransform;
     private Transform firePos;
-  
+   
     private void Awake()
     {
         aimTransform = transform.Find("Aim");

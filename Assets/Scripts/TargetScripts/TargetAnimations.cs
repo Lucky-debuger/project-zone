@@ -16,7 +16,6 @@ public class TargetAnimations : MonoBehaviour
     private void Shake()
     {
         animator.Play("Shake", 0, 0f);
-        Debug.Log("Я получил урон");
     }
 
     private void OnDestroy()
