@@ -2,19 +2,20 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    private EnemyController enemyController;
     private Vector3 startingPosition;
 
-    private void Start()
+    private void Awake()
     {
+        enemyController = GetComponent<EnemyController>();
+
         startingPosition = transform.position;
     }
 
     private Vector3 GetRoamingPosition()
     {
         Vector3 result = startingPosition + GetRandomDir() * Random.Range(10f, 70f);
-        Debug.Log(result);
-        return result;
-        
+        return result;   
     }
 
     private Vector3 GetRandomDir()

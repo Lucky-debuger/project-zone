@@ -1,14 +1,12 @@
+using System;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour, IDamageable
 {
     [SerializeField] private EnemyType1Data enemyType1Data;
-    private EnemyAI enemyAI;
 
-    private void Start()
-    {
-        enemyAI = GetComponent<EnemyAI>();
-    }
+    public event Action OnStarted;
+
 
     public void GetDamage(float damageAmount)
     {
