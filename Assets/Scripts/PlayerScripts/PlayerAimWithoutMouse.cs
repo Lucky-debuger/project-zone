@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -14,37 +15,52 @@ public class PlayerAimWithoutMouse : MonoBehaviour
     private void Awake()
     {
         aimTransform = transform.Find("Aim");
-        firePos = transform.Find("Aim/Pistol/FirePos");
+        firePos = transform.Find("Aim/Pistol/FirePos"); // Стоит ли так делать?
     }
 
     private void Update()
     {
-        if (target == null) return;
-        Debug.Log(target);
+        // if (target == null) return;
+        if (target != null)
+        {
+            HandleAiming(target.position);
+        }
 
-        HandleAiming(target.position);
-        TestFire();
+        // HandleAiming(target.position);
+        // TestFire();
     } 
 
-private void TestFire()
-{
-    testTimerFire -= Time.deltaTime;
-    
-    if (testTimerFire > 0) return;
-    
-    if (target != null)
+    private void TestFire()
     {
-        HandleShooting(target.position);
+        testTimerFire -= Time.deltaTime;
+        
+        if (testTimerFire > 0) return;
+        
+        if (target != null)
+        {
+            HandleShooting(target.position);
+        }
+        testTimerFire = 2.0f;
     }
-    testTimerFire = 2.0f;
-}
+
+    private Dictionary<Transform, float> distanceToTargets;
+
+    // private void GetNearestTarget()
+    // {
+    //     if (distanceToTargets.Count == 0) target = null; return;
+
+    //     foreach (Transform key in distanceToTargets.Keys)
+    //     {
+    //         Debug.Log(key);
+    //     }
+    // }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Enemy"))
         {
             target = collider.transform;
-            Debug.Log(target);
+            Debug.Log(target.position);
         }
     }
 
@@ -56,11 +72,10 @@ private void TestFire()
         }
     }
 
-    private void HandleAiming(Vector2 aimPosition)
+    private void HandleAiming(Vector3 aimPosition)
     {
-        Vector3 targetPos = new Vector3(aimPosition.x, aimPosition.y, 0);
-        Vector3 aimDirection = (targetPos - aimTransform.position).normalized;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        Vector3 aimDirection = (aimTransform.position - aimPosition).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg + 180;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
         Vector3 aimLocalScale = Vector3.one;

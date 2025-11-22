@@ -262,7 +262,6 @@ GameObject:
   m_Component:
   - component: {fileID: 144677688}
   - component: {fileID: 144677689}
-  - component: {fileID: 144677690}
   m_Layer: 0
   m_Name: AimArea
   m_TagString: Untagged
@@ -295,7 +294,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -310,20 +309,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 4
---- !u!114 &144677690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144677687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e563c7039586dc47abeddfd84171ecd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWeapon: {fileID: 181743856}
+  m_EdgeRadius: 8.58
 --- !u!1 &154470961
 GameObject:
   m_ObjectHideFlags: 0
@@ -64551,6 +64537,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7704024, y: 1.931145}
   m_EdgeRadius: 0
+--- !u!114 &800389449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800389439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e563c7039586dc47abeddfd84171ecd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: {fileID: 181743856}
 --- !u!1 &801890204
 GameObject:
   m_ObjectHideFlags: 0
