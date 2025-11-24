@@ -53,4 +53,10 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         Debug.Log("Я получил урон: " + countDamage.ToString());
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 7);
+    }
 }

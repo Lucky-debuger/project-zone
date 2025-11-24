@@ -42,7 +42,7 @@ public class PlayerAimWithoutMouse : MonoBehaviour
                 }
             }
         }
-        OnGetCurrentEnemy?.Invoke(nearestEnemy);
+        
         return nearestEnemy;
     }
 
@@ -75,6 +75,7 @@ public class PlayerAimWithoutMouse : MonoBehaviour
         float angle = GetAngleOnEnemy(currentEnemy);
         FlipGun(angle);
         aim.eulerAngles = new Vector3(0, 0, angle);
+        OnGetCurrentEnemy?.Invoke(currentEnemy);
     }
 
     private void FlipGun(float angle)
@@ -92,4 +93,6 @@ public class PlayerAimWithoutMouse : MonoBehaviour
         
         gun.localScale = newScale;
     }
+
+    
 }

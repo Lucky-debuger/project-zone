@@ -36,6 +36,7 @@ public class PlayerFire : MonoBehaviour
         {
             if (currentEnemy != null)
             {
+                yield return new WaitForSeconds(0.09f);
                 FireAtEnemy();
             }
             yield return new WaitForSeconds(0.5f);
@@ -48,4 +49,6 @@ public class PlayerFire : MonoBehaviour
 
         gun?.Fire(firePosition.position, currentEnemy.position);
     }
+
+    
 }

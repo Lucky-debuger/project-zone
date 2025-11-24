@@ -22,7 +22,7 @@ public class BulletTracer : MonoBehaviour
 
     private IEnumerator AnimateTracer()
     {
-        float duration = 0.1f;
+        float duration = 0.08f;
         float elapsed = 0f;
 
         while (elapsed < duration)

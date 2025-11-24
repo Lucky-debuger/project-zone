@@ -3,8 +3,9 @@ using System;
 
 public class FieldOfView : MonoBehaviour
 {
-    [SerializeField] private float detectionRange = 7.0f;
+    
     [SerializeField] private LayerMask layerMask;
+    public float detectionRange = 7.0f;
     public Transform targetTransform;
     public event Action<Transform> OnTargetEntered;
     public event Action OnTargetExited;
