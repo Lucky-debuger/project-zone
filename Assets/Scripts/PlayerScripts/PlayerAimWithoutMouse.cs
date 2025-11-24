@@ -1,106 +1,95 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class PlayerAimWithoutMouse : MonoBehaviour
 {
-    [SerializeField] private Gun currentWeapon;
-    private Transform aimTransform;
-    private Transform firePos;
-    private Transform target;
+    [SerializeField] private Transform aim;
+    [SerializeField] private Transform gun;
+    [SerializeField] private float gunScale = 3.0f;
+    [SerializeField] private float detectionUpdateInterval = 0.5f;
+    [SerializeField] private float detectionRange = 7.0f;
+    public Transform currentEnemy;
+    public event Action<Transform> OnGetCurrentEnemy;
+    public event Action OnAbsenceEnemy;
 
-    private float testTimerFire = 2.0f;
-   
-    private void Awake()
+    private void Start()
     {
-        aimTransform = transform.Find("Aim");
-        firePos = transform.Find("Aim/Pistol/FirePos"); // Стоит ли так делать?
+        StartCoroutine(GetNearestEnemyPeriodically());
     }
 
     private void Update()
     {
-        GetNearestTarget();
-        if (target != null)
-        {
-            HandleAiming(target.position);
-        }
-
-        // HandleAiming(target.position);
-        // TestFire();
-    } 
-
-    private void TestFire()
-    {
-        testTimerFire -= Time.deltaTime;
-        
-        if (testTimerFire > 0) return;
-        
-        if (target != null)
-        {
-            HandleShooting(target.position);
-        }
-        testTimerFire = 2.0f;
+        AimOnNearestEnemy();
     }
 
-    private Dictionary<Transform, float> distanceToTargets = new Dictionary<Transform, float>();
-
-    private void GetNearestTarget()
+    
+    private Transform GetNearestEnemyInCircle()
     {
-        if (distanceToTargets.Count == 0)
+        Collider2D[] hitCollider = Physics2D.OverlapCircleAll(transform.position, detectionRange);
+        Transform nearestEnemy = null;
+        float nearestSqrDistance = Mathf.Infinity;
+
+        foreach (var collider in hitCollider)
         {
-            target = null; 
+            if (collider.CompareTag("Enemy"))
+            {
+                float sqrDistance = (transform.position - collider.transform.position).sqrMagnitude;
+                if (sqrDistance < nearestSqrDistance)
+                {
+                    nearestSqrDistance = sqrDistance;
+                    nearestEnemy = collider.transform;
+                }
+            }
+        }
+        OnGetCurrentEnemy?.Invoke(nearestEnemy);
+        return nearestEnemy;
+    }
+
+    private System.Collections.IEnumerator GetNearestEnemyPeriodically()
+    {
+        while (true)
+        {
+            currentEnemy = GetNearestEnemyInCircle();
+            yield return new WaitForSeconds(detectionUpdateInterval);
+        }
+    }
+
+    private float GetAngleOnEnemy(Transform enemy)
+    {
+        if (enemy == null) return 0f;
+
+        Vector3 direction = (enemy.position - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        return angle;
+    }
+
+    private void AimOnNearestEnemy()
+    {
+        if (currentEnemy == null)
+        {
+            OnAbsenceEnemy?.Invoke();
             return;
-        }
+        } 
 
-        foreach (Transform key in distanceToTargets.Keys)
-        {
-            Debug.Log(key);
-        }
+        float angle = GetAngleOnEnemy(currentEnemy);
+        FlipGun(angle);
+        aim.eulerAngles = new Vector3(0, 0, angle);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void FlipGun(float angle)
     {
-        if (collider.CompareTag("Enemy"))
-        {
-            target = collider.transform;
-            distanceToTargets.Add(collider.transform, Mathf.Infinity);
-        }
-    }
+        Vector3 newScale = gun.localScale;
 
-    private void OnTriggerExit2D(Collider2D collider)
-    {
-        if (collider.CompareTag("Enemy"))
+        if (angle < 90 && angle > -90)
         {
-            distanceToTargets.Remove(target);
-        }
-    }
-
-    private void HandleAiming(Vector3 aimPosition)
-    {
-        Vector3 aimDirection = (aimTransform.position - aimPosition).normalized;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg + 180;
-        aimTransform.eulerAngles = new Vector3(0, 0, angle);
-
-        Vector3 aimLocalScale = Vector3.one;
-        if (angle > 90 || angle < -90)
-        {
-            aimLocalScale.y = -1f;
+            newScale.y = gunScale;
         }
         else
         {
-            aimLocalScale.y = +1f;
+            newScale.y = -gunScale;
         }
-        aimTransform.localScale = aimLocalScale;
-    }
-
-
-
-    private void HandleShooting(Vector2 mouseClickPosition)
-    {
-        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mouseClickPosition);
-        worldPosition.z = 0;
-
-        currentWeapon?.Fire(firePos.position, worldPosition);
+        
+        gun.localScale = newScale;
     }
 }

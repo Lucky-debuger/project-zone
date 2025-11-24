@@ -1,4 +1,3 @@
-using System.IO.Compression;
 using UnityEngine;
 
 public class BulletRaycast : MonoBehaviour
@@ -17,7 +16,6 @@ public class BulletRaycast : MonoBehaviour
 
         if (raycastHit2D.collider != null)
         {
-            // if (raycastHit2D.collider.TryGetComponent<IDamageable>(out IDamageable damageable))
             if (raycastHit2D.collider.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
                 damageable.GetDamage(25f);

@@ -1,8 +1,7 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     public float moveSpeed = 2f;
 
@@ -48,5 +47,10 @@ public class Enemy : MonoBehaviour
     {
         target = null;
         rb.velocity = Vector2.zero;
+    }
+
+    public void GetDamage(float countDamage)
+    {
+        Debug.Log("Я получил урон: " + countDamage.ToString());
     }
 }

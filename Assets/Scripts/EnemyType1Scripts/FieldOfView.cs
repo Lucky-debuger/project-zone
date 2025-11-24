@@ -3,27 +3,30 @@ using System;
 
 public class FieldOfView : MonoBehaviour
 {
-    public bool isPlayerInArea = false;
+    [SerializeField] private float detectionRange = 7.0f;
+    [SerializeField] private LayerMask layerMask;
     public Transform targetTransform;
-
     public event Action<Transform> OnTargetEntered;
     public event Action OnTargetExited;
 
-    void OnTriggerEnter2D(Collider2D collider)
+
+    private void Update()
     {
-        if (collider.CompareTag("Player"))
-        {
-            targetTransform = collider.transform;
-            OnTargetEntered.Invoke(collider.transform); 
-        }
+        FindPlayerInCircle();
     }
 
-    void OnTriggerExit2D(Collider2D collider)
+    private void FindPlayerInCircle()
     {
-        if (collider.CompareTag("Player"))
+        Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, detectionRange, layerMask);
+
+        if (hitCollider == null)
         {
+            OnTargetExited?.Invoke();
             targetTransform = null;
-            OnTargetExited.Invoke();
+            return;
         }
+
+        OnTargetEntered?.Invoke(hitCollider.transform);
+        targetTransform =  hitCollider.transform;
     }
 }
