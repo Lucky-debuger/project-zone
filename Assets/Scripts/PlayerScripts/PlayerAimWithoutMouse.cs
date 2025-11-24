@@ -20,7 +20,7 @@ public class PlayerAimWithoutMouse : MonoBehaviour
 
     private void Update()
     {
-        // if (target == null) return;
+        GetNearestTarget();
         if (target != null)
         {
             HandleAiming(target.position);
@@ -43,24 +43,28 @@ public class PlayerAimWithoutMouse : MonoBehaviour
         testTimerFire = 2.0f;
     }
 
-    private Dictionary<Transform, float> distanceToTargets;
+    private Dictionary<Transform, float> distanceToTargets = new Dictionary<Transform, float>();
 
-    // private void GetNearestTarget()
-    // {
-    //     if (distanceToTargets.Count == 0) target = null; return;
+    private void GetNearestTarget()
+    {
+        if (distanceToTargets.Count == 0)
+        {
+            target = null; 
+            return;
+        }
 
-    //     foreach (Transform key in distanceToTargets.Keys)
-    //     {
-    //         Debug.Log(key);
-    //     }
-    // }
+        foreach (Transform key in distanceToTargets.Keys)
+        {
+            Debug.Log(key);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Enemy"))
         {
             target = collider.transform;
-            Debug.Log(target.position);
+            distanceToTargets.Add(collider.transform, Mathf.Infinity);
         }
     }
 
@@ -68,7 +72,7 @@ public class PlayerAimWithoutMouse : MonoBehaviour
     {
         if (collider.CompareTag("Enemy"))
         {
-            target = null;
+            distanceToTargets.Remove(target);
         }
     }
 
