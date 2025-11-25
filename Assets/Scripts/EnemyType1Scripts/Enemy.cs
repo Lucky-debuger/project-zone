@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public float moveSpeed = 2f;
+    [SerializeField] private float moveSpeed = 2.0f;
 
     private Rigidbody2D rb;
     private Transform target;
@@ -15,27 +15,28 @@ public class Enemy : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         FOV = GetComponentInChildren<FieldOfView>();
 
+        if (rb == null) Debug.LogError("RigidBody2D not found on Enemy!");
+        if (FOV == null) Debug.LogError("FOV not found in children");
+
         FOV.OnTargetEntered += GetTarget;
         FOV.OnTargetExited += RemoveTarget;
     }
 
-    private void FixedUpdate() // Зачем FixedUpdate
+    private void Update()
     {
-        if (!target) return;
-
-        ChaseTarget(target.position);
+        if (target == null || !target.gameObject.activeInHierarchy)
+        {
+            moveDirection = Vector2.zero;
+            RemoveTarget();
+            return;
+        }
+            moveDirection = (target.position - transform.position).normalized;
     }
 
-    private void ChaseTarget(Vector2 targetPosition)
+    private void FixedUpdate()
     {
-        moveDirection = GetDirectionOnTarget(target.position);
-        rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * moveSpeed;
-    }
-
-    private Vector2 GetDirectionOnTarget(Vector3 targetPosition)
-    {
-        Vector2 direction = (targetPosition - transform.position).normalized;
-        return direction;
+        if (target == null) return;
+        rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 
     private void GetTarget(Transform targetTransform)
@@ -54,9 +55,9 @@ public class Enemy : MonoBehaviour, IDamageable
         Debug.Log("Я получил урон: " + countDamage.ToString());
     }
 
-    private void OnDrawGizmos()
+    private void OnDestroy()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 7);
+        FOV.OnTargetEntered -= GetTarget;
+        FOV.OnTargetExited -= RemoveTarget;
     }
 }

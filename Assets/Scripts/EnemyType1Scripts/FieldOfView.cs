@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -11,23 +12,38 @@ public class FieldOfView : MonoBehaviour
     public event Action OnTargetExited;
 
 
-    private void Update()
+    private void Start()
     {
-        FindPlayerInCircle();
+        StartCoroutine(FindPlayerInCirclePeriodically());
     }
 
-    private void FindPlayerInCircle()
+    private IEnumerator FindPlayerInCirclePeriodically()
     {
-        Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, detectionRange, layerMask);
+        while (true)
+        {   
+            Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, detectionRange, layerMask);
+            bool hadTarget = targetTransform != null;
+            bool hasTarget = hitCollider != null;
 
-        if (hitCollider == null)
-        {
-            OnTargetExited?.Invoke();
-            targetTransform = null;
-            return;
+            if (hasTarget && !hadTarget)
+            {
+                targetTransform = hitCollider.transform;
+                OnTargetEntered?.Invoke(targetTransform);
+            }
+
+            else if (!hasTarget && hadTarget)
+            {
+                targetTransform = null;
+                OnTargetExited?.Invoke();
+            }
+
+            yield return new WaitForSeconds(0.3f);
         }
+    }
 
-        OnTargetEntered?.Invoke(hitCollider.transform);
-        targetTransform =  hitCollider.transform;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }
