@@ -5,14 +5,17 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     public static event Action<Vector2> OnMouseMoved;
-    public static event Action<Vector2> OnClickPerformed;
+    public static event Action<Vector2> OnClickAtPositionPerformed;
+    public static event Action OnClickPerformed;
 
     private InputActions inputActions;
 
     void Awake()
     {
         inputActions = new InputActions();
-        inputActions.Player.Click.performed += ctx => OnClickPerformed?.Invoke(Mouse.current.position.ReadValue());
+        inputActions.Player.Click.performed += ctx => OnClickPerformed?.Invoke();
+        inputActions.Player.Click.performed += ctx => OnClickAtPositionPerformed?.Invoke(Mouse.current.position.ReadValue());
+        
     }
 
     void Update()

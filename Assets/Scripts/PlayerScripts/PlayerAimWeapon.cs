@@ -15,7 +15,7 @@ public class PlayerAimWeapon : MonoBehaviour
         // currentWeapon = GetComponentInChildren<IWeapon>(); // Компонент?
 
         PlayerInput.OnMouseMoved += HandleAiming;
-        PlayerInput.OnClickPerformed += HandleShooting;
+        PlayerInput.OnClickAtPositionPerformed += HandleShooting;
     }
 
     private void HandleAiming(Vector2 mousePosition)

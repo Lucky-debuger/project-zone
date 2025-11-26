@@ -4,11 +4,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private float moveSpeed = 2.0f;
+    [SerializeField] private HealthSystem healthSystem;
 
     private Rigidbody2D rb;
     private Transform target;
     private FieldOfView FOV;
     private Vector2 moveDirection;
+
+
 
     private void Awake()
     {
@@ -30,7 +33,7 @@ public class Enemy : MonoBehaviour, IDamageable
             RemoveTarget();
             return;
         }
-            moveDirection = (target.position - transform.position).normalized;
+        moveDirection = (target.position - transform.position).normalized;
     }
 
     private void FixedUpdate()
@@ -52,7 +55,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void GetDamage(float countDamage)
     {
-        Debug.Log("Я получил урон: " + countDamage.ToString());
+        // Debug.Log("Я получил урон: " + countDamage.ToString());
+        healthSystem.ChangeHealthPointsOn(countDamage);
     }
 
     private void OnDestroy()

@@ -10,14 +10,26 @@ public class PlayerFire : MonoBehaviour
 
     private void Awake()
     {
+
+    }
+
+    private void OnEnable()
+    {
         PlayerAimWithoutMouse playerAimWithoutMouse =  GetComponent<PlayerAimWithoutMouse>();
         playerAimWithoutMouse.OnGetCurrentEnemy += SetEnemy;
         playerAimWithoutMouse.OnAbsenceEnemy += DeleteEnemy;
     }
 
+    private void OnDisable()
+    {
+        PlayerAimWithoutMouse playerAimWithoutMouse =  GetComponent<PlayerAimWithoutMouse>();
+        playerAimWithoutMouse.OnGetCurrentEnemy -= SetEnemy;
+        playerAimWithoutMouse.OnAbsenceEnemy -= DeleteEnemy;
+    }
+
     private void Start()
     {
-        StartCoroutine(FirePeriodically());
+        // StartCoroutine(FirePeriodically());
     }
 
     private void SetEnemy(Transform enemy)
@@ -43,7 +55,7 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
-    private void FireAtEnemy()
+    public void FireAtEnemy()
     {
         if (currentEnemy == null) return;
 
