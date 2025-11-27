@@ -6,6 +6,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float HealthPoints;
 
     public Action<float> OnHealthPointsChanged;
+    public Action OnDied;
 
     public void ChangeHealthPointsOn(float countHealthPoints)
     {
@@ -21,6 +22,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Die()
     {
+        OnDied?.Invoke();
         Destroy(gameObject);
     }
 }
