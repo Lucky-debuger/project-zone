@@ -3,8 +3,7 @@ using UnityEngine.InputSystem;
 
 public class ItemTaker : MonoBehaviour
 {
-
-    [SerializeField] Item itemToAdd;
+    [SerializeField] ItemScriptableObject itemToAdd;
     [SerializeField] Inventory targetInventory;
 
 

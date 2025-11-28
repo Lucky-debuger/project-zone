@@ -8,11 +8,6 @@ public class PlayerFire : MonoBehaviour
     private Transform currentEnemy;
 
 
-    private void Awake()
-    {
-
-    }
-
     private void OnEnable()
     {
         PlayerAimWithoutMouse playerAimWithoutMouse =  GetComponent<PlayerAimWithoutMouse>();
@@ -25,11 +20,6 @@ public class PlayerFire : MonoBehaviour
         PlayerAimWithoutMouse playerAimWithoutMouse =  GetComponent<PlayerAimWithoutMouse>();
         playerAimWithoutMouse.OnGetCurrentEnemy -= SetEnemy;
         playerAimWithoutMouse.OnAbsenceEnemy -= DeleteEnemy;
-    }
-
-    private void Start()
-    {
-        // StartCoroutine(FirePeriodically());
     }
 
     private void SetEnemy(Transform enemy)
@@ -61,6 +51,4 @@ public class PlayerFire : MonoBehaviour
 
         gun?.Fire(firePosition.position, currentEnemy.position);
     }
-
-    
 }

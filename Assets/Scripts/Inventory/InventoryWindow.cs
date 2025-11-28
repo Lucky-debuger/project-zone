@@ -4,18 +4,18 @@ using UnityEngine.UI;
 
 public class InventoryWindow : MonoBehaviour
 {
-    [SerializeField] private Inventory targetInvetory;
+    [SerializeField] private Inventory targetInventory;
     [SerializeField] private RectTransform itemsPanel;
 
     readonly List<GameObject> drawnIcons = new List<GameObject>(); // Почему readonly?
 
     public void Initialize()
     {
-        targetInvetory.onItemAdded += OnItemAdded;
+        targetInventory.onItemAdded += OnItemAdded;
         Redraw();
     }
 
-    private void OnItemAdded(Item item) => Redraw(); // Почему сразу не вызвать Redraw? 
+    private void OnItemAdded(ItemScriptableObject item) => Redraw(); // Почему сразу не вызвать Redraw? 
     // {
     //     throw new System.NotImplementedException(); Что это такое?
     // }
@@ -23,9 +23,9 @@ public class InventoryWindow : MonoBehaviour
     private void Redraw()
     {
         ClearDrawn();
-        for (int i = 0; i < targetInvetory.inventoryItems.Count; i++)
+        for (int i = 0; i < targetInventory.inventoryItems.Count; i++)
         {
-            Item item = targetInvetory.inventoryItems[i];
+            ItemScriptableObject item = targetInventory.inventoryItems[i];
             GameObject icon = new GameObject("icon");
             Image iconImage = icon.AddComponent<Image>();
             iconImage.sprite = item.Icon;

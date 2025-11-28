@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "Inventory/Item")]
-public class Item : ScriptableObject
+public class ItemScriptableObject : ScriptableObject
 {
+    [Header("Basic Info")]
     public string Name = "Item";
     public Sprite Icon;
-    public int price = 500;
 }

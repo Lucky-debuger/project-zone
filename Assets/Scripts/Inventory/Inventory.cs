@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private List<Item> startItems = new List<Item>();
-    public List<Item> inventoryItems { get; private set; } // Когда стоит использовать свойства?;
+    [SerializeField] private List<ItemScriptableObject > startItems = new List<ItemScriptableObject >();
+    public List<ItemScriptableObject > inventoryItems { get; private set; } // Когда стоит использовать свойства?;
 
-    public Action<Item> onItemAdded;
+    public Action<ItemScriptableObject > onItemAdded;
 
     public void Initialize()
     {
-        inventoryItems = new List<Item>();
+        inventoryItems = new List<ItemScriptableObject >();
         for (int i = 0; i < startItems.Count; i++)
         {
             AddItem(startItems[i]);
         }   
     }
 
-    public void AddItem(Item item)
+    public void AddItem(ItemScriptableObject ItemScriptableObject)
     {
-        inventoryItems.Add(item);
-        onItemAdded?.Invoke(item);
+        inventoryItems.Add(ItemScriptableObject);
+        onItemAdded?.Invoke(ItemScriptableObject);
     }
 }
