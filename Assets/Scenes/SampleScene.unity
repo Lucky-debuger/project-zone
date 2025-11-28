@@ -64788,7 +64788,6 @@ GameObject:
   - component: {fileID: 667855619}
   - component: {fileID: 667855618}
   - component: {fileID: 667855620}
-  - component: {fileID: 667855621}
   m_Layer: 5
   m_Name: InventoryBG
   m_TagString: Untagged
@@ -64869,19 +64868,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetInvetory: {fileID: 1070384239}
   itemsPanel: {fileID: 1320115505}
-  Visibility: 0
---- !u!114 &667855621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 667855616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 073ce99b8d1b60c46841c3b2d0747192, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &757832761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3300732744805150831, guid: cc65c7e0be1d6fb4d9b684f04b9fc05e, type: 3}
@@ -71692,10 +71678,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03aaa92b517ac89409a0d12936d5eed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartItems:
+  startItems:
   - {fileID: 11400000, guid: b20a7c9daeeb0dd4aa94467d09a1aecd, type: 2}
   - {fileID: 11400000, guid: dcc92e626ec7d6e468e2690b72a37bb5, type: 2}
-  inventoryItems: []
+--- !u!114 &1070384246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757832761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8876b1ce4f80142bef5983954057a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToAdd: {fileID: 11400000, guid: b20a7c9daeeb0dd4aa94467d09a1aecd, type: 2}
+  targetInventory: {fileID: 1070384239}
 --- !u!1 &1320115504
 GameObject:
   m_ObjectHideFlags: 0
