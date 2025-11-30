@@ -3,21 +3,22 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
-    [SerializeField] Gun gun;
+    [SerializeField] GunShootBullet gunShootBullet;
     [SerializeField] Transform firePosition;
+    [SerializeField] Transform aimRotation;
     private Transform currentEnemy;
 
 
     private void OnEnable()
     {
-        PlayerAimWithoutMouse playerAimWithoutMouse =  GetComponent<PlayerAimWithoutMouse>();
+        PlayerAimWithoutMouse playerAimWithoutMouse = GetComponent<PlayerAimWithoutMouse>();
         playerAimWithoutMouse.OnGetCurrentEnemy += SetEnemy;
         playerAimWithoutMouse.OnAbsenceEnemy += DeleteEnemy;
     }
 
     private void OnDisable()
     {
-        PlayerAimWithoutMouse playerAimWithoutMouse =  GetComponent<PlayerAimWithoutMouse>();
+        PlayerAimWithoutMouse playerAimWithoutMouse = GetComponent<PlayerAimWithoutMouse>();
         playerAimWithoutMouse.OnGetCurrentEnemy -= SetEnemy;
         playerAimWithoutMouse.OnAbsenceEnemy -= DeleteEnemy;
     }
@@ -39,16 +40,17 @@ public class PlayerFire : MonoBehaviour
             if (currentEnemy != null)
             {
                 yield return new WaitForSeconds(0.09f);
-                FireAtEnemy();
+                Fire();
             }
             yield return new WaitForSeconds(0.5f);
         }
     }
 
-    public void FireAtEnemy()
+    public void Fire()
     {
-        if (currentEnemy == null) return;
-
-        gun?.Fire(firePosition.position, currentEnemy.position);
+        if (gunShootBullet != null)
+        {
+            gunShootBullet.Fire();
+        }
     }
 }
