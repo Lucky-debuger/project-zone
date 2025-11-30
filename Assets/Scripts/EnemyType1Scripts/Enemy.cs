@@ -5,15 +5,19 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private HealthSystem healthSystem;
+    [SerializeField] private ItemDroper itemDroper;
 
     private Rigidbody2D rb;
     private Transform target;
     private FieldOfView FOV;
     private Vector2 moveDirection;
 
+    private void Start()
+    {
+        Initialize();
+    }
 
-
-    private void Awake()
+    public void Initialize()
     {
         rb = GetComponent<Rigidbody2D>();
         FOV = GetComponentInChildren<FieldOfView>();

@@ -6,7 +6,6 @@ public class ItemPicker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Кто-то вошел!");
         if (collision.TryGetComponent<IPickable>(out IPickable pickable))
         {
             pickable.AddToInventory(inventory);

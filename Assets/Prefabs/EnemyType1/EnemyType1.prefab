@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 210594337962776549}
   - component: {fileID: 683667216}
   - component: {fileID: 683667217}
+  - component: {fileID: 1746355435}
   m_Layer: 0
   m_Name: EnemyType1
   m_TagString: Enemy
@@ -135,7 +136,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003131628, y: -0.006263852}
+  m_Offset: {x: -0.024251819, y: 0.0021842718}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -146,7 +147,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5324173, y: 0.9248352}
+  m_Size: {x: 1.7098274, y: 1.1106935}
   m_EdgeRadius: 0
 --- !u!50 &1228583841682747357
 Rigidbody2D:
@@ -209,6 +210,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1850914529370605450}
+  healthSystem: {fileID: 683667216}
+--- !u!114 &1746355435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1228583841682747331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d9e33ba89645a47ab495f370f60851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToDrop: {fileID: 8911116119686893622, guid: 359dd7f7ebf9061409a48d9d81950a2d, type: 3}
   healthSystem: {fileID: 683667216}
 --- !u!1 &1228583841920926058
 GameObject:

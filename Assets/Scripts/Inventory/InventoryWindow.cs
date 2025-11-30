@@ -31,6 +31,7 @@ public class InventoryWindow : MonoBehaviour
             iconImage.sprite = item.Icon;
             iconImage.preserveAspect = true;
             icon.transform.SetParent(itemsPanel);
+            icon.transform.localScale = Vector3.one;
             drawnIcons.Add(icon);
         }
     }
