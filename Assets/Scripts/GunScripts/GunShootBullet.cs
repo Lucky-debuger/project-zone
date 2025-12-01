@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GunShootBullet : MonoBehaviour
 {
-    [SerializeField] private Bullet bulletPrefab;
+    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePosition;
     [SerializeField] private float spreadSpeed;
     public float spreadAngle {get; private set;}
@@ -18,7 +18,7 @@ public class GunShootBullet : MonoBehaviour
     public void Fire()
     {
         increaseSpreadAngle();
-        Bullet bullet = Instantiate(bulletPrefab, firePosition.position, firePosition.transform.rotation);
+        Bullet bullet = Instantiate(bulletPrefab, firePosition.position, firePosition.transform.rotation).GetComponent<Bullet>();
         bullet.SetInitialDirection(spreadAngle);
     }
 

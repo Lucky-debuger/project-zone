@@ -6,6 +6,7 @@ public class InventoryWindow : MonoBehaviour
 {
     [SerializeField] private Inventory targetInventory;
     [SerializeField] private RectTransform itemsPanel;
+    [SerializeField] private bool isAcitve;
 
     readonly List<GameObject> drawnIcons = new List<GameObject>(); // Почему readonly?
 
@@ -41,6 +42,21 @@ public class InventoryWindow : MonoBehaviour
         for (int i = 0; i < drawnIcons.Count; i++)
         {
             Destroy(drawnIcons[i]);
+        }
+    }
+
+    public void ToggleInventoryActivity()
+    {
+        if (isAcitve == true)
+        {
+            isAcitve = false;
+            gameObject.SetActive(false);
+        }
+
+        else
+        {
+            isAcitve = true;
+            gameObject.SetActive(true);
         }
     }
 }
