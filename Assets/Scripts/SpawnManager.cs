@@ -4,6 +4,7 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] spawnEnemy;
     [SerializeField] private Transform[] spawnPoint;
+    [SerializeField] private bool isActive;
     
     private float spawnerInterval;
 
@@ -21,6 +22,8 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
+        if (!isActive) return;
+
         if (spawnerInterval <= 0 && numberEnemiesOnScene < totalNumberEnemies)
         {
             randEnemy = Random.Range(0, spawnEnemy.Length);

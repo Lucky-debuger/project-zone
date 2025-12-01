@@ -59,7 +59,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void GetDamage(float countDamage)
     {
-        // Debug.Log("Я получил урон: " + countDamage.ToString());
         healthSystem.ChangeHealthPointsOn(countDamage);
     }
 
