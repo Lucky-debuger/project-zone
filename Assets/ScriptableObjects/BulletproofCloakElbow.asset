@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb119abededce040956a05e28b72e15, type: 3}
   m_Name: BulletproofCloakElbow
   m_EditorClassIdentifier: 
-  Name: BulletproofCloakElbow
+  Name: Bulletproof cloak elbow
   Icon: {fileID: 21300000, guid: 3e85cdf74e325fa40a2c9e688dc51325, type: 3}
-  price: 500

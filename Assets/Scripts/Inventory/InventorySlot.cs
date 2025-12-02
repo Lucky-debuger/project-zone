@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class InventorySlot : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class InventorySlot : MonoBehaviour
     public TMP_Text textMeshPro;
     public ItemScriptableObject item;
 
+
+    public void Initialize(ItemScriptableObject inventoryScriptableObject)
+    {
+        icon.sprite = inventoryScriptableObject.Icon;
+        textMeshPro.text = inventoryScriptableObject.Name;
+    }
     public void OnShowRemoveButton()
     // Кнопкой является сам слот
     {
@@ -17,6 +24,7 @@ public class InventorySlot : MonoBehaviour
 
     public void OnRemoveButton()
     {
+        Inventory.inventoryInstance.DeleteItem(item);
         Destroy(gameObject);
     }
 }
