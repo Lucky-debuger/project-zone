@@ -1,17 +1,22 @@
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     public Button removeButton;
+    public TMP_Text textMeshPro;
+    public ItemScriptableObject item;
 
-    private ItemGameObject item;
-
-    public void AddItem(ItemGameObject newItem)
+    public void OnShowRemoveButton()
+    // Кнопкой является сам слот
     {
-        item = newItem;
-        icon.enabled = true;
-        removeButton.interactable = true;
+        removeButton.gameObject.SetActive(!removeButton.gameObject.activeSelf);
+    }
+
+    public void OnRemoveButton()
+    {
+        Destroy(gameObject);
     }
 }
