@@ -8,7 +8,7 @@ public class InventoryWindow : MonoBehaviour
     [SerializeField] private GameObject inventorySlotPrefab;
 
 
-    readonly List<GameObject> drawnSlots = new List<GameObject>(); // Почему readonly?
+    readonly List<GameObject> drawnSlots = new List<GameObject>();
 
     public void Initialize()
     {
@@ -16,10 +16,7 @@ public class InventoryWindow : MonoBehaviour
         Redraw();
     }
 
-    private void OnItemAdded(ItemScriptableObject item) => Redraw(); // Почему сразу не вызвать Redraw? 
-    // {
-    //     throw new System.NotImplementedException(); Что это такое?
-    // }
+    private void OnItemAdded(ItemScriptableObject item) => Redraw();
 
     private void Redraw()
     {
@@ -40,6 +37,7 @@ public class InventoryWindow : MonoBehaviour
         {
             Destroy(drawnSlots[i]);
         }
+        drawnSlots.Clear();
     }
 
     public void ToggleInventoryActivity() => gameObject.SetActive(!gameObject.activeSelf);

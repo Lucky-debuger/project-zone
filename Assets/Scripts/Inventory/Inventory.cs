@@ -5,42 +5,51 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private List<ItemScriptableObject > startItems = new List<ItemScriptableObject >();
-    public static Inventory inventoryInstance;
-    public List<ItemScriptableObject > inventoryItems { get; private set; } // Когда стоит использовать свойства?;
-
-    public Action<ItemScriptableObject > onItemAdded;
+    
+    public static Inventory Instance { get; private set; }
+    public List<ItemScriptableObject> inventoryItems { get; private set; }
+    public Action<ItemScriptableObject > OnItemAdded;
+    private bool _isInitialized = false;
 
     public void Initialize()
     {
-        if (inventoryInstance != null && inventoryInstance != this)
+        InitializeSingleton();
+        InitializeInventory();
+    }
+
+    private void InitializeSingleton()
+    {
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            // DontDestroyOnLoad(gameObject); Что это и зачем?
-            inventoryInstance = this;
+            Instance = this;
         }
+    }
 
-        inventoryItems = new List<ItemScriptableObject >();
+    private void InitializeInventory()
+    {
+        if (_isInitialized) return;
+
+        inventoryItems = new List<ItemScriptableObject>();
         for (int i = 0; i < startItems.Count; i++)
         {
             AddItem(startItems[i]);
-        }   
+        }
+
+        _isInitialized = true;
     }
 
     public void AddItem(ItemScriptableObject ItemScriptableObject)
     {
         inventoryItems.Add(ItemScriptableObject);
-        onItemAdded?.Invoke(ItemScriptableObject);
+        OnItemAdded?.Invoke(ItemScriptableObject);
     }
 
     public void DeleteItem(ItemScriptableObject itemScriptableObject)
     {
         inventoryItems.Remove(itemScriptableObject);
-        for (int i = 0; i < inventoryItems.Count; i++)
-        {
-            Debug.Log(inventoryItems[i].Name);
-        }
     }
 }
