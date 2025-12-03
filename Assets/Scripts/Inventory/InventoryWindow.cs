@@ -12,7 +12,7 @@ public class InventoryWindow : MonoBehaviour
 
     public void Initialize()
     {
-        targetInventory.onItemAdded += OnItemAdded;
+        targetInventory.OnItemAdded += OnItemAdded;
         Redraw();
     }
 
@@ -25,7 +25,7 @@ public class InventoryWindow : MonoBehaviour
         {
             InventorySlot inventorySlot = Instantiate(inventorySlotPrefab).GetComponent<InventorySlot>();
             inventorySlot.Initialize(targetInventory.inventoryItems[i]);
-            inventorySlot.transform.SetParent(itemsPanel); // Зачем transform?
+            inventorySlot.transform.SetParent(itemsPanel);
             inventorySlot.transform.localScale = Vector3.one;
             drawnSlots.Add(inventorySlot.gameObject);
         }

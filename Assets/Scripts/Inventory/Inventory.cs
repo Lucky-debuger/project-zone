@@ -5,11 +5,12 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private List<ItemScriptableObject > startItems = new List<ItemScriptableObject >();
-    
+    private bool _isInitialized = false;
+
     public static Inventory Instance { get; private set; }
+
     public List<ItemScriptableObject> inventoryItems { get; private set; }
     public Action<ItemScriptableObject > OnItemAdded;
-    private bool _isInitialized = false;
 
     public void Initialize()
     {

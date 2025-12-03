@@ -25,7 +25,7 @@ public class InventorySlot : MonoBehaviour
 
     public void OnRemoveButton()
     {
-        Inventory.inventoryInstance.DeleteItem(item);
+        Inventory.Instance.DeleteItem(item);
         Destroy(gameObject);
     }
 }
