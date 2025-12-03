@@ -7,8 +7,7 @@ public class InventoryWindow : MonoBehaviour
     [SerializeField] private RectTransform itemsPanel;
     [SerializeField] private GameObject inventorySlotPrefab;
 
-
-    readonly List<GameObject> drawnSlots = new List<GameObject>();
+    private readonly List<GameObject> _drawnSlots = new List<GameObject>();
 
     public void Initialize()
     {
@@ -27,17 +26,17 @@ public class InventoryWindow : MonoBehaviour
             inventorySlot.Initialize(targetInventory.inventoryItems[i]);
             inventorySlot.transform.SetParent(itemsPanel);
             inventorySlot.transform.localScale = Vector3.one;
-            drawnSlots.Add(inventorySlot.gameObject);
+            _drawnSlots.Add(inventorySlot.gameObject);
         }
     }
 
     private void ClearDrawn()
     {
-        for (int i = 0; i < drawnSlots.Count; i++)
+        for (int i = 0; i < _drawnSlots.Count; i++)
         {
-            Destroy(drawnSlots[i]);
+            Destroy(_drawnSlots[i]);
         }
-        drawnSlots.Clear();
+        _drawnSlots.Clear();
     }
 
     public void ToggleInventoryActivity() => gameObject.SetActive(!gameObject.activeSelf);

@@ -9,7 +9,8 @@ public class PlayerAimWithoutMouse : MonoBehaviour
     [SerializeField] private float gunScale = 3.0f;
     [SerializeField] private float detectionUpdateInterval = 0.5f;
     [SerializeField] private float detectionRange = 7.0f;
-    public Transform currentEnemy;
+
+    public Transform CurrentEnemy { get; private set; }
     public event Action<Transform> OnGetCurrentEnemy;
     public event Action OnAbsenceEnemy;
 
@@ -50,7 +51,7 @@ public class PlayerAimWithoutMouse : MonoBehaviour
     {
         while (true)
         {
-            currentEnemy = GetNearestEnemyInCircle();
+            CurrentEnemy = GetNearestEnemyInCircle();
             yield return new WaitForSeconds(detectionUpdateInterval);
         }
     }
@@ -66,16 +67,16 @@ public class PlayerAimWithoutMouse : MonoBehaviour
 
     private void AimOnNearestEnemy()
     {
-        if (currentEnemy == null)
+        if (CurrentEnemy == null)
         {
             OnAbsenceEnemy?.Invoke();
             return;
         } 
 
-        float angle = GetAngleOnEnemy(currentEnemy);
+        float angle = GetAngleOnEnemy(CurrentEnemy);
         FlipGun(angle);
         aim.eulerAngles = new Vector3(0, 0, angle);
-        OnGetCurrentEnemy?.Invoke(currentEnemy);
+        OnGetCurrentEnemy?.Invoke(CurrentEnemy);
     }
 
     private void FlipGun(float angle)
@@ -93,6 +94,4 @@ public class PlayerAimWithoutMouse : MonoBehaviour
         
         gun.localScale = newScale;
     }
-
-    
 }

@@ -6,6 +6,7 @@ public class GunShootBullet : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firePosition;
     [SerializeField] private float spreadSpeed;
+    [SerializeField] private Animator animator;
     public float spreadAngle {get; private set;}
     
 
@@ -17,6 +18,7 @@ public class GunShootBullet : MonoBehaviour
 
     public void Fire()
     {
+        animator.Play("FireAnimation", 0, 0f);
         increaseSpreadAngle();
         Bullet bullet = Instantiate(bulletPrefab, firePosition.position, firePosition.transform.rotation).GetComponent<Bullet>();
         bullet.SetInitialDirection(spreadAngle);

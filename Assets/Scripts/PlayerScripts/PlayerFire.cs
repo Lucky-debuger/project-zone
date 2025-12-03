@@ -8,7 +8,6 @@ public class PlayerFire : MonoBehaviour
     [SerializeField] Transform aimRotation;
     private Transform currentEnemy;
 
-
     private void OnEnable()
     {
         PlayerAimWithoutMouse playerAimWithoutMouse = GetComponent<PlayerAimWithoutMouse>();

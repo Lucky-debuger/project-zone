@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ItemGameObject : MonoBehaviour, IPickable
 {
-    public ItemScriptableObject itemScriptableObject;
+    [SerializeField] private ItemScriptableObject itemScriptableObject;
 
     public void AddToInventory(Inventory inventory)
     {

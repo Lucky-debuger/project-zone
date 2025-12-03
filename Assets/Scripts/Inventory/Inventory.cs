@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    [Header("Initialization")]
     [SerializeField] private List<ItemScriptableObject > startItems = new List<ItemScriptableObject >();
+    [SerializeField] private bool _debugLogs = false;
+    
     private bool _isInitialized = false;
+    
 
     public static Inventory Instance { get; private set; }
 
     public List<ItemScriptableObject> inventoryItems { get; private set; }
+
     public Action<ItemScriptableObject > OnItemAdded;
 
     public void Initialize()
@@ -22,7 +27,9 @@ public class Inventory : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
+            if (_debugLogs) Debug.LogWarning($"Multiple Inventory instances detected. Destroying {gameObject.name}");
             Destroy(gameObject);
+            return;
         }
         else
         {
