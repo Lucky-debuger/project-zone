@@ -28,18 +28,9 @@ public class InventoryWindow : MonoBehaviour
         {
             InventorySlot inventorySlot = Instantiate(inventorySlotPrefab).GetComponent<InventorySlot>();
             inventorySlot.Initialize(targetInventory.inventoryItems[i]);
-            inventorySlot.transform.SetParent(itemsPanel); // Зачемиу transform?
+            inventorySlot.transform.SetParent(itemsPanel); // Зачем transform?
             inventorySlot.transform.localScale = Vector3.one;
             drawnSlots.Add(inventorySlot.gameObject);
-            // ItemScriptableObject item = targetInventory.inventoryItems[i];
-            // GameObject icon = new GameObject("icon");
-            // Image iconImage = icon.AddComponent<Image>();
-            // iconImage.sprite = item.Icon;
-            // iconImage.preserveAspect = true;
-            // icon.transform.SetParent(itemsPanel);
-            // icon.transform.localScale = Vector3.one;
-            // drawnIcons.Add(icon);
-
         }
     }
 

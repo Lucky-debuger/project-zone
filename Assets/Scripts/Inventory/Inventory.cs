@@ -38,5 +38,9 @@ public class Inventory : MonoBehaviour
     public void DeleteItem(ItemScriptableObject itemScriptableObject)
     {
         inventoryItems.Remove(itemScriptableObject);
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            Debug.Log(inventoryItems[i].Name);
+        }
     }
 }

@@ -47,7 +47,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  detectionRange: 5
+  detectionRange: 10
   targetTransform: {fileID: 0}
 --- !u!1 &1228583841076247151
 GameObject:
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   healthSystem: {fileID: 683667216}
+  itemDroper: {fileID: 0}
 --- !u!114 &683667216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,7 +724,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_TargetDisplay: 0
