@@ -6,8 +6,8 @@ public class FieldOfView : MonoBehaviour
 {
     
     [SerializeField] private LayerMask layerMask;
-    public float detectionRange = 7.0f;
-    public Transform targetTransform;
+    [SerializeField] private float detectionRange = 7.0f;
+    public Transform targetTransform {get; private set;}
     public event Action<Transform> OnTargetEntered;
     public event Action OnTargetExited;
 
