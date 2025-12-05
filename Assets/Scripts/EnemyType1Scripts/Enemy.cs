@@ -5,8 +5,7 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private float moveSpeed = 2.0f;
     [SerializeField] private HealthSystem healthSystem;
-    [SerializeField] private ItemDroper itemDroper;
-
+    
     private Rigidbody2D rb;
     private Transform target;
     private FieldOfView FOV;
@@ -14,6 +13,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        Debug.Log("2");
         Initialize();
     }
 
@@ -24,17 +24,19 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (rb == null) Debug.LogError("RigidBody2D not found on Enemy!");
         if (FOV == null) Debug.LogError("FOV not found in children");
-
+        
         FOV.OnTargetEntered += GetTarget;
         FOV.OnTargetExited += RemoveTarget;
+
+        FOV.Initialize();
+        
     }
 
     private void Update()
     {
-        if (target == null || !target.gameObject.activeInHierarchy)
+        if (target == null)
         {
             moveDirection = Vector2.zero;
-            RemoveTarget();
             return;
         }
         moveDirection = (target.position - transform.position).normalized;
@@ -43,6 +45,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private void FixedUpdate()
     {
         if (target == null) return;
+        
         rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
     }
 

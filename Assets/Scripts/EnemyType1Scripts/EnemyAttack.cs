@@ -35,7 +35,7 @@ public class EnemyAttack : MonoBehaviour
             if (_isInAttackState)
             {
                 if (CheckInAttackArea() != true) return;
-
+                
                 Attack();
                 timerAttack = 0.0f;
                 _isInAttackState = false;
