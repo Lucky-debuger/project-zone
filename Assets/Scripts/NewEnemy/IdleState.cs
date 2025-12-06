@@ -1,0 +1,24 @@
+using System;
+
+public class IdleState : EnemyState
+{
+    public IdleState(EnemyController controller) : base(controller) {}
+
+    public override void EnterState()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void UpdateState()
+    {
+        if (_enemy.CanSeePlayer())
+        {
+            _enemy.SetState(new ChasingState(_enemy));
+        }
+    }
+
+    public override void ExitState()
+    {
+        throw new NotImplementedException();
+    }
+}

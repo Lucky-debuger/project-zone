@@ -1,7 +1,6 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using Unity.Mathematics;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -19,7 +18,6 @@ public class FieldOfView : MonoBehaviour
 
     public void Initialize()
     {
-        Debug.Log("1");
         StartCoroutine(FindPlayerInCirclePeriodically());
     }
 
@@ -29,7 +27,6 @@ public class FieldOfView : MonoBehaviour
         {   
             Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, detectionRange, layerMask);
             _playerInsideColliderCurrentFrame = hitCollider != null;
-
 
             if (_playerInsideColliderCurrentFrame != _playerInsideCollider)
             {

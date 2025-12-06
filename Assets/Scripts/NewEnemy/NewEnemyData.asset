@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5562d1b62fb3204792f8d5697c04a35, type: 3}
+  m_Name: NewEnemyData
+  m_EditorClassIdentifier: 
+  enemyName: "\u041F\u043B\u043E\u0442\u044C"
+  health: 100
+  detectionRange: 5
+  attackRange: 2
+  moveSpeed: 3
+  damage: 10
+  attackCooldown: 1
+  item: {fileID: 11400000, guid: b20a7c9daeeb0dd4aa94467d09a1aecd, type: 2}
