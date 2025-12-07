@@ -18,12 +18,18 @@ public class EnemyController : MonoBehaviour
         
         SetState(new IdleState(this));
     }
-    
+
+    private void Update()
+    {
+        currentState?.UpdateState();
+    }
+
     public void SetState(EnemyState newState)
     {
         currentState?.ExitState();
         currentState = newState;
         currentState?.EnterState();   
+        Debug.Log(currentState);
     }
 
     public bool CanSeePlayer()

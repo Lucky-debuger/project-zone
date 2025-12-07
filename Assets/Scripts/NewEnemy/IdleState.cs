@@ -1,12 +1,10 @@
-using System;
-
 public class IdleState : EnemyState
 {
     public IdleState(EnemyController controller) : base(controller) {}
 
     public override void EnterState()
     {
-        throw new NotImplementedException();
+        
     }
 
     public override void UpdateState()
@@ -19,6 +17,6 @@ public class IdleState : EnemyState
 
     public override void ExitState()
     {
-        throw new NotImplementedException();
+        
     }
 }

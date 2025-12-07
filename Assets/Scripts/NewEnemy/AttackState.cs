@@ -6,9 +6,9 @@ public class AttackState : EnemyState
 
     public AttackState(EnemyController controller) : base(controller) {}
 
-    public override void EnterState() // Почему public?
+    public override void EnterState()
     {
-        _lastAttackTime = Time.time; // Что такое Time.time?
+        _lastAttackTime = Time.time;
         PerformAttack();
     }
 
@@ -43,7 +43,7 @@ public class AttackState : EnemyState
 
     private void PerformAttack()
     {
-        HealthSystem playerHealth = _enemy.player.GetComponent<HealthSystem>(); // Разобраться чем отличаются модификаторы доступа переменных
+        HealthSystem playerHealth = _enemy.player.GetComponent<HealthSystem>();
         if (playerHealth != null)
         {
             playerHealth.ChangeHealthPointsOn(_enemy.enemyData.damage);

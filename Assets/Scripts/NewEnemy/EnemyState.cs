@@ -1,6 +1,6 @@
 public abstract class EnemyState
 {
-    protected EnemyController _enemy; // Почему нет у классов наследников?
+    protected EnemyController _enemy;
 
     public EnemyState(EnemyController controller)
     {
