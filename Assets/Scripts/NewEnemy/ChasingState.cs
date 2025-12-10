@@ -15,10 +15,11 @@ public class ChasingState : EnemyState
             return;
         }
 
-        // if (_enemy.CanSeePlayer())
-        // {
-        //     _enemy.SetState(new AttackState(_enemy));
-        // }
+        if (_enemy.CanAttackPlayer())
+        {
+            _enemy.SetState(new AttackState(_enemy));
+            return;
+        }
 
         _enemy.MoveTowardsPlayer();
     }

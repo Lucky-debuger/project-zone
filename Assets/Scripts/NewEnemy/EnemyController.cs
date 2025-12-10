@@ -1,19 +1,23 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IDamageable
 {
     [Header("Enemy data")]
     public EnemyData enemyData;
     
     [Header("Links")]
     public Transform player;
+    [SerializeField] private HealthSystem healthSystem;
     
     private EnemyState currentState;
-    private float currentHealth;
+    // private float currentHealth;
+    
     
     void Start()
     {
-        currentHealth = enemyData.health;
+        // currentHealth = enemyData.health;
+        healthSystem.SetHealthPoints(100);
+        
         player = GameObject.FindGameObjectWithTag("Player").transform; // Подумать о вариантах получения объекта
         
         SetState(new IdleState(this));
@@ -29,7 +33,6 @@ public class EnemyController : MonoBehaviour
         currentState?.ExitState();
         currentState = newState;
         currentState?.EnterState();   
-        Debug.Log(currentState);
     }
 
     public bool CanSeePlayer()
@@ -48,11 +51,9 @@ public class EnemyController : MonoBehaviour
         return Vector2.Distance(transform.position, player.position) <= enemyData.attackRange;
     }
 
-    public void TakeDamage(int damage)
+    public void GetDamage(float damage)
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0)
-            Die();
+        healthSystem.ChangeHealthPointsOn(damage);
     }
     
     private void Die()

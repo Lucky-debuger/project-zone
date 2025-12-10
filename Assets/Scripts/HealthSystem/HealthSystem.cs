@@ -3,10 +3,17 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] private float HealthPoints;
+    public float HealthPoints {get; private set;}
 
     public Action<float> OnHealthPointsChanged;
     public Action OnDied;
+
+    private float _maxHealth = 100;
+
+    public void SetHealthPoints(float points)
+    {
+        HealthPoints = Mathf.Clamp(points, 0, _maxHealth);
+    }
 
     public void ChangeHealthPointsOn(float countHealthPoints)
     {

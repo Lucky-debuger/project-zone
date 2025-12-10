@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class AttackState : EnemyState
 {
-    private float _lastAttackTime;
+    private float _attackTimer;
 
     public AttackState(EnemyController controller) : base(controller) {}
 
     public override void EnterState()
     {
-        _lastAttackTime = Time.time;
-        PerformAttack();
+        
     }
 
     public override void UpdateState()
@@ -27,25 +26,29 @@ public class AttackState : EnemyState
         }
         else
         {
-            if (Time.time >= _lastAttackTime + _enemy.enemyData.attackCooldown)
+            if (_attackTimer >= _enemy.enemyData.attackCooldown)
             {
                 PerformAttack();
-                _lastAttackTime = Time.time;
+                _attackTimer = 0.0f;
             }
+            _attackTimer += Time.deltaTime;
+
         }
     }
 
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
+
     }
 
     private void PerformAttack()
     {
-        HealthSystem playerHealth = _enemy.player.GetComponent<HealthSystem>();
-        if (playerHealth != null)
-        {
-            playerHealth.ChangeHealthPointsOn(_enemy.enemyData.damage);
-        }
+        // HealthSystem playerHealth = _enemy.player.GetComponent<HealthSystem>();
+        // if (playerHealth != null)
+        // {
+        //     playerHealth.ChangeHealthPointsOn(_enemy.enemyData.damage);
+        // }
+        _enemy.player.GetComponent<Player>().GetDamage(_enemy.enemyData.damage);
+        Debug.Log("Аттакую!");
     }
 }

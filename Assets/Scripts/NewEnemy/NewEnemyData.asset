@@ -17,6 +17,6 @@ MonoBehaviour:
   detectionRange: 5
   attackRange: 2
   moveSpeed: 3
-  damage: 10
+  damage: 20
   attackCooldown: 1
   item: {fileID: 11400000, guid: b20a7c9daeeb0dd4aa94467d09a1aecd, type: 2}
