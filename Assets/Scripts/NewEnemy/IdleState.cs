@@ -7,7 +7,7 @@ public class IdleState : EnemyState
 
     public override void EnterState()
     {
-        Debug.Log(this.GetType().Name);
+        
     }
 
     public override void UpdateState()
@@ -20,6 +20,6 @@ public class IdleState : EnemyState
 
     public override void ExitState()
     {
-        throw new NotImplementedException();
+        
     }
 }
