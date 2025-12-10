@@ -20,7 +20,6 @@ public class AttackState : EnemyState
             {
                 _enemy.SetState(new ChasingState(_enemy));
             }
-
             else
             {
                 _enemy.SetState(new IdleState(_enemy));

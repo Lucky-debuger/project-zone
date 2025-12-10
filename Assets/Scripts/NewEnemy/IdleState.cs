@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class IdleState : EnemyState
 {
@@ -6,7 +7,7 @@ public class IdleState : EnemyState
 
     public override void EnterState()
     {
-        throw new NotImplementedException();
+        Debug.Log(this.GetType().Name);
     }
 
     public override void UpdateState()
