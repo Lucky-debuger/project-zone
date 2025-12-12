@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: "\u041F\u043B\u043E\u0442\u044C"
   health: 100
-  detectionRange: 5
-  attackRange: 2
+  detectionRange: 10
+  attackRange: 3
   moveSpeed: 3
   damage: 20
-  attackCooldown: 1
+  attackCooldown: 0.7
   item: {fileID: 11400000, guid: b20a7c9daeeb0dd4aa94467d09a1aecd, type: 2}

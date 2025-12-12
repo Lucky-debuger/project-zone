@@ -64563,7 +64563,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75bee6587ef77f847ab69cac1d90a10b, type: 3}
   m_Name: 
@@ -72561,7 +72561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnEnemy:
-  - {fileID: 1228583841682747331, guid: daf83a0ff95e7a3499097186357372eb, type: 3}
+  - {fileID: 4544904388212217530, guid: d1623cd9ea2c8f7419c0a8989113ba3d, type: 3}
   spawnPoint:
   - {fileID: 923385638}
   - {fileID: 57562963}
@@ -72569,7 +72569,7 @@ MonoBehaviour:
   - {fileID: 108563125}
   - {fileID: 1640670002}
   - {fileID: 1349415646}
-  isActive: 0
+  isActive: 1
   startSpawnerInterval: 3
   totalNumberEnemies: 5
   numberEnemiesOnScene: 0
