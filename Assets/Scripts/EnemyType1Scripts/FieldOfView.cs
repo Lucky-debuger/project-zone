@@ -28,7 +28,6 @@ public class FieldOfView : MonoBehaviour
             Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, detectionRange, layerMask);
             _playerInsideColliderCurrentFrame = hitCollider != null;
 
-
             if (_playerInsideColliderCurrentFrame != _playerInsideCollider)
             {
                 if (hitCollider)

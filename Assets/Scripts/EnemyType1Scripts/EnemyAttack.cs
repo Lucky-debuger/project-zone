@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -7,8 +8,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float attackInterval;
 
     private float timerAttack = 0.0f;
-    private bool _isInAttackState = false;
-    private bool _isInAttackArea = false;
+
     private Transform currentTarget = null;
 
     private void Start()
@@ -23,24 +23,23 @@ public class EnemyAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        timerAttack += Time.fixedDeltaTime;
-
-        if (timerAttack >= attackInterval)
+        if (currentTarget && CheckTargetInAttackArea())
         {
-            _isInAttackState = true;
-        }
+            timerAttack += Time.fixedDeltaTime;
 
-        if (currentTarget)
-        {
-            if (_isInAttackState)
+            if (timerAttack >= attackInterval)
             {
-                if (CheckInAttackArea() != true) return;
-                
-                Attack();
+                if (CheckTargetInAttackArea()) Attack();
+
                 timerAttack = 0.0f;
-                _isInAttackState = false;
-            }
+            }   
         }
+        else
+        {
+            timerAttack = 0.0f;
+        }
+
+
     }
 
     private void Attack()
@@ -51,7 +50,7 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    private bool CheckInAttackArea()
+    private bool CheckTargetInAttackArea()
     {
         float distanceToTarget = Vector3.Distance(currentTarget.position, transform.position);
 

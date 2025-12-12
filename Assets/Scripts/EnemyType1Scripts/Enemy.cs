@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        Debug.Log("2");
         Initialize();
     }
 
