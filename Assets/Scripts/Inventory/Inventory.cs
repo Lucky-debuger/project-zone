@@ -1,63 +1,55 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [Header("Initialization")]
-    [SerializeField] private List<ItemScriptableObject > startItems = new List<ItemScriptableObject >();
-    [SerializeField] private bool _debugLogs = false;
-    
-    private bool _isInitialized = false;
-    
-
+    public Dictionary<ItemScriptableObject, int> itemDicttionary { get; private set; } = new Dictionary<ItemScriptableObject, int>();
     public static Inventory Instance { get; private set; }
-
-    public List<ItemScriptableObject> inventoryItems { get; private set; }
-
-    public Action<ItemScriptableObject > OnItemAdded;
+    public Action<ItemScriptableObject> OnItemAdded;
 
     public void Initialize()
     {
         InitializeSingleton();
-        InitializeInventory();
     }
 
     private void InitializeSingleton()
     {
         if (Instance != null && Instance != this)
         {
-            if (_debugLogs) Debug.LogWarning($"Multiple Inventory instances detected. Destroying {gameObject.name}");
             Destroy(gameObject);
             return;
         }
+
+        Instance = this;
+    }
+
+    public void AddItem(ItemScriptableObject itemScriptableObject)
+    {
+        if (itemDicttionary.ContainsKey(itemScriptableObject))
+        {
+            itemDicttionary[itemScriptableObject]++;
+        }
         else
         {
-            Instance = this;
-        }
-    }
-
-    private void InitializeInventory()
-    {
-        if (_isInitialized) return;
-
-        inventoryItems = new List<ItemScriptableObject>();
-        for (int i = 0; i < startItems.Count; i++)
-        {
-            AddItem(startItems[i]);
+            itemDicttionary[itemScriptableObject] = 1;
         }
 
-        _isInitialized = true;
-    }
-
-    public void AddItem(ItemScriptableObject ItemScriptableObject)
-    {
-        inventoryItems.Add(ItemScriptableObject);
-        OnItemAdded?.Invoke(ItemScriptableObject);
+        OnItemAdded?.Invoke(itemScriptableObject);
     }
 
     public void DeleteItem(ItemScriptableObject itemScriptableObject)
     {
-        inventoryItems.Remove(itemScriptableObject);
+        if (!itemDicttionary.ContainsKey(itemScriptableObject)) return;
+
+        if (itemDicttionary[itemScriptableObject] > 1)
+        {
+            itemDicttionary[itemScriptableObject]--;
+        }
+        else
+        {
+            itemDicttionary.Remove(itemScriptableObject);
+        }
     }
 }

@@ -14,6 +14,6 @@ public class EnemyData : ScriptableObject
     public int damage = 10;
     public float attackCooldown = 1f;
     
-    [Header("Drop")]
-    public ItemScriptableObject item;
+    // [Header("Drop")]
+    // public ItemScriptableObject item;
 }

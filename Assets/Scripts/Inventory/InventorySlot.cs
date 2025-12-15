@@ -6,14 +6,17 @@ public class InventorySlot : MonoBehaviour
 {
     [SerializeField] private Image icon;
     [SerializeField] private Button removeButton;
-    [SerializeField] private TMP_Text textMeshPro;
+    [SerializeField] private TMP_Text nameTMP;
+    [SerializeField] private TMP_Text countTMP;
     [SerializeField] private ItemScriptableObject item;
 
-    public void Initialize(ItemScriptableObject inventoryScriptableObject)
+    public void Initialize(ItemScriptableObject inventoryScriptableObject, int count)
     {
         icon.sprite = inventoryScriptableObject.Icon;
-        textMeshPro.text = inventoryScriptableObject.Name;
+        nameTMP.text = inventoryScriptableObject.Name;
+
         item = inventoryScriptableObject;
+        countTMP.text = Inventory.Instance.itemDicttionary[item].ToString();
     }
 
     public void OnShowRemoveButton()
