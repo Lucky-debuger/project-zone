@@ -17,16 +17,31 @@ public class InventoryWindow : MonoBehaviour
 
     private void OnItemAdded(ItemScriptableObject item) => Redraw();
 
+    // private void Redraw()
+    // {
+    //     ClearDrawn();
+    //     for (int i = 0; i < targetInventory.inventoryItems.Count; i++)
+    //     {
+    //         InventorySlot inventorySlot = Instantiate(inventorySlotPrefab).GetComponent<InventorySlot>();
+    //         inventorySlot.Initialize(targetInventory.inventoryItems[i]);
+    //         inventorySlot.transform.SetParent(itemsPanel);
+    //         inventorySlot.transform.localScale = Vector3.one;
+    //         _drawnSlots.Add(inventorySlot.gameObject);
+    //     }
+    // }
+
     private void Redraw()
     {
         ClearDrawn();
-        for (int i = 0; i < targetInventory.inventoryItems.Count; i++)
+
+        foreach (var kvp in targetInventory.itemDicttionary)
         {
-            InventorySlot inventorySlot = Instantiate(inventorySlotPrefab).GetComponent<InventorySlot>();
-            inventorySlot.Initialize(targetInventory.inventoryItems[i]);
-            inventorySlot.transform.SetParent(itemsPanel);
-            inventorySlot.transform.localScale = Vector3.one;
-            _drawnSlots.Add(inventorySlot.gameObject);
+            ItemScriptableObject item = kvp.Key;
+            int count = kvp.Value;
+            InventorySlot slot = Instantiate(inventorySlotPrefab, itemsPanel).GetComponent<InventorySlot>();
+            slot.Initialize(item, count);
+            slot.transform.localScale = Vector3.one;
+            _drawnSlots.Add(slot.gameObject);
         }
     }
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 486637675}
   - component: {fileID: 486637677}
   - component: {fileID: 486637676}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 871481111}
   - component: {fileID: 871481113}
   - component: {fileID: 871481112}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1123465618}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 1185310720}
   - component: {fileID: 1185310722}
   - component: {fileID: 1185310721}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 2022799670}
   - component: {fileID: 2022799669}
   - component: {fileID: 2022799668}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,8 @@ GameObject:
   - component: {fileID: 4544904388212217508}
   - component: {fileID: 4544904388212217514}
   - component: {fileID: 1080639424}
-  m_Layer: 7
+  - component: {fileID: 926079348}
+  m_Layer: 0
   m_Name: NewEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -506,6 +507,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc43e0ab9a2504b4d97a662fb1bd30f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &926079348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544904388212217530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d9e33ba89645a47ab495f370f60851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToDrop: {fileID: 8911116119686893622, guid: 359dd7f7ebf9061409a48d9d81950a2d, type: 3}
+  healthSystem: {fileID: 1080639424}
 --- !u!1 &4544904388450416659
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4544904388450416668}
   - component: {fileID: 4544904388450416669}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: "\u041F\u043B\u043E\u0442\u044C_0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4544904388688888599}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4544904389826556205}
   - component: {fileID: 4544904389826556206}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: "\u041F\u043B\u043E\u0442\u044C_2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4544904390031474142}
   - component: {fileID: 4544904390031474143}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: "\u041F\u043B\u043E\u0442\u044C_1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
