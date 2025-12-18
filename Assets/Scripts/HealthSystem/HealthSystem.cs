@@ -30,6 +30,7 @@ public class HealthSystem : MonoBehaviour
     private void Die()
     {
         OnDied?.Invoke();
+        Debug.Log("Я издался!");
         Destroy(gameObject);
     }
 }
